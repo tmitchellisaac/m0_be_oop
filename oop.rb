@@ -47,33 +47,34 @@
 #  it should have a is_hungry attribute that is true by default
 #  it should have a eat method. If the dragon eats 4 times, it is no longer hungry
 
-class Dragon
-    attr_reader(:name, :rider, :color, :is_hungry)
+# class Dragon
+#     attr_reader(:name, :rider, :color, :is_hungry)
 
-    def initialize(name, rider, color, is_hungry = true)
-        @name = name
-        @rider = rider
-        @color = color
-        @is_hungry = is_hungry
-        @food = 0
-    end
+#     def initialize(name, rider, color, is_hungry = true)
+#         @name = name
+#         @rider = rider
+#         @color = color
+#         @is_hungry = is_hungry
+#         @food = 0
+#     end
 
-    def eat
-       @food = @food.next
-        if @food >= 4
-            @is_hungry = false
-        else
-        "Dragon is still hungry"
-        end
-    end
-end
+#     def eat
+#        @food = @food.next
+#         if @food >= 4
+#             @is_hungry = false
+#         else
+#         "Dragon is still hungry"
+#         end
+#     end
+# end
 
-kyle = Dragon.new("Kyle","Thomas","black")
-kyle.eat
-kyle.eat
-p kyle.eat
-p kyle.is_hungry
-p kyle
+# kyle = Dragon.new("Kyle","Thomas","black")
+# kyle.eat
+# kyle.eat
+# p kyle.eat
+# kyle.eat
+# p kyle.is_hungry
+# p kyle
 
 #  Write a Hobbit class
 #  it should have a dynamic name attribute (string)
@@ -83,3 +84,57 @@ p kyle
 #  it should have an is_adult attribute (boolean) that is false by default. once a Hobbit is 33, it should be an adult
 #  it should have an is_old attribute that defaults to false. once a Hobbit is 101, it is old.
 #  it should have a has_ring attribute. If the Hobbit's name is "Frodo", true, if not, false.
+
+class Hobbit
+    attr_reader :name, :disposition, :age, :is_adult, :is_old, :has_ring
+
+
+    def initialize(name, disposition, age = 0, is_adult = false, is_old = false, has_ring = false)
+        @name = name
+        @disposition = disposition
+        @age = age
+        @is_adult = if age >= 33
+                        true
+                    else
+                        false
+                    end 
+        @is_old = if age >= 101
+                        true
+                    else
+                        false
+                    end 
+        @has_ring = if @name == "Frodo"
+                        true
+                    else
+                        false
+                    end
+    end
+    
+    def celebrate_birthday
+        @age = age.next
+        if @age >= 33
+            @is_adult = true
+        else
+            @is_adult = false
+        end
+
+        if @age >= 101
+            @is_old = true
+        else
+            @is_old = false
+        end
+    end
+end
+
+
+bilbo = Hobbit.new("Bilbo","happy", 100)
+
+frodo = Hobbit.new("Frodo","eager", 32)
+
+p frodo
+frodo.celebrate_birthday
+p frodo
+
+p bilbo
+bilbo.celebrate_birthday
+p bilbo
